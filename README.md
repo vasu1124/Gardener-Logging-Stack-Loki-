@@ -11,21 +11,19 @@ In essence, Gardener is an [extension API server](https://kubernetes.io/docs/tas
 
 ![](images/gardener-architecture.png)
 
-## Accessing the logs
-[Gardener](https://gardener.cloud/) provides automatically created and configured logging stack for each cluster. The end user has access the logs from controlplane components like `kube-apiserver`, `kube-controller-manager` and `kube-scheduller` via automatically created Grafana dashboards.
-
-![](images/grafana-logs.png)
-
-
 ## Motivation
-Today [Gardener](https://gardener.cloud/) already manages thousands of Kubernetes clusters around the globe for all of SAP’s development, quality as well internal and external production requirements. It also serves other [Community members](https://gardener.cloud/adopter/) ([PingCap](https://pingcap.com/blog), [FI-TS](https://www.f-i-ts.de/blog/), and more) as their multi-cloud orchestration tool of choice. [#Gardener](https://gardener.cloud) clusters come with a monitoring and logging stack for the control planes of these clusters. While the monitoring stack is straight-forward, the logging stack was more of a challenge as it had to come with these requirements:
+Today [Gardener](https://gardener.cloud/) already manages thousands of Kubernetes clusters around the globe for all of SAP’s development, quality as well internal and external production requirements. It also serves other [Community members](https://gardener.cloud/adopter/) ([PingCap](https://gardener.cloud/blog/2020-05/00/), [FI-TS](https://metal-stack.io/blog/01-why-metal-stack/), and more) as their multi-cloud orchestration tool of choice. [#Gardener](https://gardener.cloud) clusters come with a monitoring and logging stack for the control planes of these clusters. While the monitoring stack is straight-forward, the logging stack was more of a challenge as it had to come with these requirements:
 1) Resource efficient (cpu, memory)
 2) Secure and reliable
 3) Multi-tenant (per cluster)
 4) Dynamic vertical scaling
 
+### Accessing the logs
+[Gardener](https://gardener.cloud/) provides automatically created and configured logging stack for each cluster. The end user has access the logs from controlplane components like `kube-apiserver`, `kube-controller-manager` and `kube-scheduller` via automatically created Grafana dashboards.
+
 ## What we had until now
 ![](images/current-logging-architecture.png)
+![](images/grafana-logs.png)
 
 #### Limitations
 1) Two middle layer components ([fluentd](https://www.fluentd.org/) and [elastic-search](https://www.elastic.co/elasticsearch/)) which make it difficult to trace an issue.
